@@ -1,0 +1,28 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>Check Connection | Webexoxo API Assignment by Arif</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head> 
+<body data-bs-theme="dark">
+    <div class="card bg-light" style="box-shadow:0 0 8px lightblue;">
+        <div class="card-header" style="text-align: center;background: rgb(2,0,36);
+    background: linear-gradient(28deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);"> 
+            <h2>Test Connection</h2>
+        </div>
+        <div class="card-body" style="display: flex; flex-direction: column; align-items: center; gap:5px; border-radius: 0 0 7px 7px;">
+            {% if response == 200 %}
+                <p id="testResult" class="text-success" style="text-align:center;">Connection is <b>OK</b></p>
+            {% else %}
+                <p id="testResult" class="text-danger" style="text-align:center;">Unable to connect. Please try again.</p>
+            {% endif %}
+            <a class="btn btn-primary" style="text-align: center; margin-top:0" role="button" href="{{ url_for('home', access_token=access_token) }}">Go Back</a>
+        </div>
+            
+    </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Rooms</title> 
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head> 
+<body data-bs-theme="dark">
+    <div class="card bg-light text-dark" style="height:90vh;">
+        <div class="card-header text-light" style="text-align: center;background: rgb(2,0,36);
+background: linear-gradient(28deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);">
+            <h1 style="text-align: center;">List of Room</h1>
+        </div>
+        <div class="card-body" style="height: 465px; overflow-y: auto;">
+            <ul class="list-group">
+                <!-- Room ID, Room Title, date created, last activity -->
+                {% for room in rooms %}
+                <li class="list-group-item"><b class="fs-3">{{ room['title'] }}</b>
+                    <div><p class="fw-lighter fs-6 roomId">Room Id: {{ room['id'] }}</p></div>
+                    <p style="font-size: 11px; margin-bottom: 0;">Creation Date: {{ room['created'] }}</p>
+                    <p style="font-size: 11px;">Last Activity: {{ room['lastActivity'] }}</p>
+                </li>
+                {% else %}
+                <li id="empty-li" style="text-align:center !important; cursor: pointer;">
+                    <span id="text-in-li1">Its empty bro 🗿🗿🗿</span>
+                    <div id="text-in-li2" style="display:none;">
+                        <i>No, this is not a room's name. Seriously, go get a room.</i>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a class="btn btn-primary col-4 mx-auto" role="button" style="display: flex; flex-direction: column; align-items: center;" href="{{ url_for('home', access_token=access_token) }}">Go Back</a>
+
+        <!-- <div class="card-body" style="display: flex; flex-direction: column; align-items: center;">
+        </div> -->
+    </div>
+
+    <script>
+        document.getElementById("empty-li").addEventListener("click", function() {
+            var hiddenText = document.getElementById("text-in-li2");
+            hiddenText.style.display = "block"; // Show text
+            this.style.pointerEvents = "none";  // Disable further clicks
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

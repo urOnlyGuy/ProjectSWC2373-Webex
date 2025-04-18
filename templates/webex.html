@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Webex</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://code.s4d.io/widget-space/production/main.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://code.s4d.io/widget-space/production/bundle.js"></script>
+</head>
+<body>
+    <!-- https://community.cisco.com/t5/webex-for-developers/space-widget-cdn-broken/td-p/4703242 #wrapper bugfix# -->
+    <div class="widget-wrap" style="width: 100%; height: 600px;">
+        <div id="webex-container"/>
+    </div>
+<script>
+    console.log("Initiating webex...");
+    const roomId = "{{ room_id }}";
+    const accessToken = "{{ access_token }}";
+
+    console.log("roomId: ", roomId)
+    console.log("accessToken: ", accessToken)
+
+  var widgetEl = document.getElementById('webex-container');
+  // Init webex
+  webex.widget(widgetEl).spaceWidget({
+    accessToken: accessToken,
+    destinationId: roomId,
+    destinationType: 'spaceId',
+    spaceActivities: {"files":true,"meet":true,"message":true,"people":true},
+    initialActivity: 'message',
+    secondaryActivitiesFullWidth: true,
+    composerActions: {"attachFiles":true},
+    disablePresence: false,
+    disableFlags: false
+  });
+
+  console.log("Initiation of webex complete.");
+</script>
+</body>
+</html>

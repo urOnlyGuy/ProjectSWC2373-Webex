@@ -1,0 +1,63 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Webex Troubleshooting System | By Arif</title> 
+    <link rel="icon" type="image/x-icon" href="static/favicon.ico">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') 
+}}"> 
+</head> 
+<body>
+            <!-- Navbar -->
+            <header class="navbar">
+                <a href="/" class="navbar-brand">
+                    <span class="app-title">Webexoxo Troubleshooting Tool | By Arif</span>
+                </a>
+            </header>
+    <div class="container"> 
+        <h1>Webex Login</h1> 
+        <p>Enter your Webex access token to retrieve your user information.</p> 
+         
+        {% with messages = get_flashed_messages() %} 
+        {% if messages %} 
+        <div class="alert"> 
+            {% for message in messages %} 
+            <p>{{ message }}</p> 
+            {% endfor %} 
+        </div> 
+        {% endif %} 
+        {% endwith %} 
+         
+        {# 
+        https://stackoverflow.com/questions/66084995/how-to-create-dynamic-route-in-flask-after-form-submit
+        attempt for redirect after form submission, using code below:
+        <form action="{{ url_for('home', access_token=access_token, user_info=user_info) }}" method="POST">
+        so original form code is:
+        <form method="POST" > 
+        #}
+        
+        <form method="POST"> 
+            <div class="form-group"> 
+                <label for="access_token">Access Token:</label> 
+                <input type="text" id="access_token" name="access_token" 
+placeholder="Enter your access token" required> 
+            </div> 
+            <button type="submit">Submit</button> 
+        </form> 
+ 
+        {% if user_info %} 
+        <div class="user-info"> 
+            <h2>User Information</h2> 
+            <ul> 
+                <li><strong>Name:</strong> {{ user_info.displayName }}</li> 
+                <li><strong>Email:</strong> {{ user_info.emails[0] }}</li> 
+                <li><strong>Job Title:</strong> {{ user_info.title }}</li> 
+                <li><strong>Org ID:</strong> {{ user_info.orgId }}</li> 
+                <!-- Add more fields as needed --> 
+            </ul> 
+        </div> 
+        {% endif %} 
+    </div> 
+</body> 
+</html>
